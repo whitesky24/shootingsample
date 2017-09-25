@@ -8,8 +8,7 @@ public abstract class AbstractShootable extends AbstractMono implements Shootabl
     }
     @Override
     public void init(Vect p, Vect dp) {
-        double x = this.width /0.9;
-        this.p.set(p.getX() + x, p.getY());         //弾の位置を設定
+        this.p.set(p.getX() + 115, p.getY());         //弾の位置を設定
         this.dp.set(dp.getX(), dp.getY());
         setRect();
     }
