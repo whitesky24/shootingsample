@@ -17,6 +17,7 @@ public class View extends SurfaceView {
     private int height;
     private DrawList drawList;
     private Mikata mikata;
+    private Anata anata;
     private HanteiList<Mono> tekiList;
     private HanteiList<Shootable> tamaList;
     private Context context;
@@ -42,8 +43,9 @@ public class View extends SurfaceView {
         drawList.add(new Haikei(context));
 
         tamaList = new HanteiList<>();
+        anata = new Anata(context, tamaList);
         mikata = new Anata(context, tamaList);
-        mikata.set((width / 2) - 32, height * 3 / 4);
+        mikata.set((width / 2) - (anata.getWidth() / 2), height * 3 / 4);
         drawList.add(mikata);
 
         tekiList = new HanteiList<>();

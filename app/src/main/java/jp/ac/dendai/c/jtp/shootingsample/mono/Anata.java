@@ -1,7 +1,7 @@
 package jp.ac.dendai.c.jtp.shootingsample.mono;
 import android.content.Context;
 import android.view.MotionEvent;
-
+import jp.ac.dendai.c.jtp.shootingsample.Debug;
 import jp.ac.dendai.c.jtp.shootingsample.HanteiList;
 import jp.ac.dendai.c.jtp.shootingsample.R;
 import jp.ac.dendai.c.jtp.shootingsample.Vect;
@@ -12,12 +12,16 @@ public class Anata extends AbstractShooter implements Mikata {
     private static final Vect tamadp = new Vect(0, -10);    //弾速
     private double shoottic;
     private int upY = 250;
-    private int downY = 1800;
+    private int downY = 1600;
 
     //コンストラクタ
     public Anata(Context context, HanteiList<Shootable> tamalist) {
         super(context, ids, tamalist, new Tama(context));
         shoottic = 0;
+    }
+
+    public int getWidth(){
+        return this.width;
     }
 
     //画面端を越えたときの処理
@@ -28,7 +32,6 @@ public class Anata extends AbstractShooter implements Mikata {
         if(p.getY() + this.height > downY) p.setY(downY - this.height);       //自機が画面下端を越えたときの処理
         if(p.getY() < upY) p.setY(upY);                                            //自機が画面上端を越えたときの処理
     }
-
 
     //自機の処理
     @Override
