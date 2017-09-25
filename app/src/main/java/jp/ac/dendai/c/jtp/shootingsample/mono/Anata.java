@@ -12,7 +12,7 @@ public class Anata extends AbstractShooter implements Mikata {
     private static final Vect tamadp = new Vect(0, -10);    //弾速
     private double shoottic;
     private int upY = 250;
-    private int downY = 1600;
+//    private int downY = 1600;
 
     //コンストラクタ
     public Anata(Context context, HanteiList<Shootable> tamalist) {
@@ -25,7 +25,7 @@ public class Anata extends AbstractShooter implements Mikata {
     public void move(int width, int height) {
         if(p.getX() +  this.width > width) p.setX(width - this.width);           //自機が画面右端を越えたときの処理
         if(p.getX() < 0) p.setX(0);                                                 //自機が画面左端を越えたときの処理
-        if(p.getY() + this.height > downY) p.setY(downY - this.height);       //自機が画面下端を越えたときの処理
+        if(p.getY()  > height - 100) p.setY(height - 100);       //自機が画面下端を越えたときの処理
         if(p.getY() < upY) p.setY(upY);                                            //自機が画面上端を越えたときの処理
     }
 

@@ -1,9 +1,8 @@
 
 package jp.ac.dendai.c.jtp.shootingsample.mono;
-import jp.ac.dendai.c.jtp.shootingsample.R;
-import jp.ac.dendai.c.jtp.shootingsample.Vect;
 import android.content.Context;
-import android.graphics.Canvas;
+
+import jp.ac.dendai.c.jtp.shootingsample.R;
 public class Haikei extends AbstractMono {
     private static final int[] ids = {R.drawable.haikei};
     public Haikei(Context context){
