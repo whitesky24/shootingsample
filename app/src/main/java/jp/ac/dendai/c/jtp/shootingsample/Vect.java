@@ -1,19 +1,26 @@
 package jp.ac.dendai.c.jtp.shootingsample;
 import android.graphics.Rect;
+
 public class Vect {
     private double x;
     private double y;
+
+    //コンストラクタ
     public Vect(double x, double y) {
         super();
         this.x = x;
         this.y = y;
     }
+
+    //コンストラクタ
     public Vect() {
     }
+
     public void set(double x, double y) {
         this.x = x;
         this.y = y;
     }
+
     public void set(Vect v) {
         this.x = v.x;
         this.y = v.y;
@@ -36,29 +43,34 @@ public class Vect {
     public int getIntY() {
         return (int) y;
     }
+
     public void add(Vect delta) {
         x += delta.x;
         y += delta.y;
     }
+
     public void add(double t, Vect delta) {
         x += delta.x * t;
         y += delta.y * t;
     }
+
     public void restrict(double c) {
         x = x < -c ? -c : x > c ? c : x;
         y = y < -c ? -c : y > c ? c : y;
     }
+
     public void reflectX() {
         x = -x;
     }
     public void reflectY() {
         y = -y;
     }
+
     public Vect front(Rect r) {
         Vect v = new Vect();
         v.set(this);
         v.setY(y - r.height());
-        Debug.append("tamaheight", "" + r.height());
+        //Debug.append("tamaheight", "" + r.height());
         return v;
     }
 }

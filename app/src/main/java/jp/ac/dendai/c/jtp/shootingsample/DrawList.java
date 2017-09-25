@@ -1,4 +1,5 @@
 package jp.ac.dendai.c.jtp.shootingsample;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import java.util.ArrayList;
@@ -10,20 +11,16 @@ public class DrawList extends ArrayList<Mono> {
     private static final long serialVersionUID = 6330699380650402372L;
     private Score score;
     private List<HanteiList<? extends Mono>> list;
-
     public DrawList() {
         super();
         list = new ArrayList<>();
     }
-
     public void addScore(Score s) {
         score = s;
     }
-
     public void addList(HanteiList<? extends Mono> list) {
         this.list.add(list);
     }
-
     public void draw(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
         score.draw(canvas);
@@ -35,9 +32,8 @@ public class DrawList extends ArrayList<Mono> {
                 m.draw(canvas);
             }
         }
-        Debug.draw(canvas);
+        //Debug.draw(canvas);
     }
-
     public void step(double t, int width, int height) {
         for (Mono m : this) {
             m.step(t, width, height);
@@ -48,7 +44,6 @@ public class DrawList extends ArrayList<Mono> {
             }
         }
     }
-
     public void stop() {
         for (Mono m : this) {
             m.stop();
@@ -59,7 +54,6 @@ public class DrawList extends ArrayList<Mono> {
             }
         }
     }
-
     public void update() {
         Iterator<Mono> i = this.iterator();
         while (i.hasNext()) {

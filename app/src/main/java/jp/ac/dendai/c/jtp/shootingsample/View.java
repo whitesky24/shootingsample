@@ -9,6 +9,7 @@ import jp.ac.dendai.c.jtp.shootingsample.mono.Anata;
 import jp.ac.dendai.c.jtp.shootingsample.mono.Mikata;
 import jp.ac.dendai.c.jtp.shootingsample.mono.Mono;
 import jp.ac.dendai.c.jtp.shootingsample.mono.Shootable;
+
 public class View extends SurfaceView {
     final static long tic = 10;
     public volatile boolean shutdown;
@@ -24,6 +25,8 @@ public class View extends SurfaceView {
     private Score score;
     private TekiLogic tekiLogic;
     private final Object lock;
+    private int point;
+
     public View(Context context, Point p) {
         super(context);
         this.context = context;
@@ -31,6 +34,7 @@ public class View extends SurfaceView {
         height = p.y;
         lock = new Object();
     }
+
     public void init() {
         drawList = new DrawList();
         score = new Score();
@@ -39,11 +43,11 @@ public class View extends SurfaceView {
 
         tamaList = new HanteiList<>();
         mikata = new Anata(context, tamaList);
-        mikata.set(width / 2, height * 3 / 4);
+        mikata.set((width / 2) - 32, height * 3 / 4);
         drawList.add(mikata);
 
         tekiList = new HanteiList<>();
-        tekiLogic = new TekiLogic(context, tekiList);
+        tekiLogic = new TekiLogic(context, tekiList, score);
 
         drawList.addList(tekiList);
         drawList.addList(tamaList);
@@ -53,11 +57,13 @@ public class View extends SurfaceView {
         drawThread = new DrawThread();
         moveThread = new MoveThread();
     }
+
     public void start(){
         shutdown = false;
         drawThread.start();
         moveThread.start();
     }
+
     private void destroyThread(Thread t) {
         if (t != null) {
             shutdown = true;
@@ -69,6 +75,7 @@ public class View extends SurfaceView {
             }
         }
     }
+
     private void draw() {
         synchronized (lock) {
             Canvas canvas = getHolder().lockCanvas();
@@ -77,6 +84,7 @@ public class View extends SurfaceView {
             getHolder().unlockCanvasAndPost(canvas); // 描画を終了
         }
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -106,11 +114,11 @@ public class View extends SurfaceView {
             double previous = (double) System.currentTimeMillis();
             double now;
             while (!shutdown) {
-                Debug.append("tamasize", "" + tamaList.size());
+                //Debug.append("tamasize", "" + tamaList.size());
                 synchronized (lock) {
                     now = System.currentTimeMillis();
                     double tstep = (now - previous) / tic;
-                    //    Debug.append("tstep",""+tstep);
+                    //Debug.append("tstep",""+tstep);
                     drawList.step(tstep, width, height);
                     tekiLogic.step(tstep, width, height);
                 }

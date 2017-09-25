@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context="jp.ac.dendai.c.jtp.shootingsample.MainActivity">
 
-    <TextView
+    <ImageButton
+        android:id="@+id/start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@drawable/startbutton"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="358dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/title"
+        tools:layout_editor_absoluteY="78dp"
+        tools:layout_editor_absoluteX="112dp" />
 </android.support.constraint.ConstraintLayout>
